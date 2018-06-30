@@ -1,0 +1,18 @@
+PATH
+  remote: .
+  specs:
+    termux_api (0.0.1)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler (~> 1.16)
+  termux_api!
+
+BUNDLED WITH
+   1.16.1
