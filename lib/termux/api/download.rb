@@ -11,7 +11,7 @@ module Termux
         command << "-t #{title}" if title
         command << url
 
-        Open3.capture2(*command).first
+        Open3.capture2(*command)
       end
     end
   end
