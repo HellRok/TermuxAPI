@@ -25,19 +25,14 @@ module Termux
 
         command = ['termux-dialog']
         command << type
-        command << "-i #{hint}" if hint
+        command << ['-i', hint] if hint
         command << "-m" if multiline
         command << "-n" if number
         command << "-p" if password
-        command << "-v #{values.join(',')}" if values.any?
-        command << "-r #{[minimum, maximum, start].join(',')}" if minimum
-        command << "-t #{title}" if title
-
-        # TODO: Getting a really strange error where it thinks the numbers are
-        # strings when executing with -r, I have no idea why it's happening but
-        # will fix it one day in the future
-        command = [command.join(' ')] if minimum
-
+        command << ['-v', values.join(',')] if values.any?
+        command << ['-r', [minimum, maximum, start].join(',')] if minimum
+        command << ['-t', title] if title
+        command.flatten!
 
         output = JSON.parse(Open3.capture2(*command).first)
         new(
